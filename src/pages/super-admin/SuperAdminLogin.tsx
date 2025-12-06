@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { Card, CardBody } from '../../components/ui/Card';
 
-const SUPER_ADMIN_KEY = (import.meta.env as any).VITE_SUPER_ADMIN_KEY || 'mervo_admin_key_2025';
+const SUPER_ADMIN_KEY = import.meta.env.VITE_SUPER_ADMIN_KEY || 'mervo_super-admin_key_2025';
 
 export default function SuperAdminLogin() {
   const [searchParams] = useSearchParams();
