@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils"
 import { Label } from "./label"
 
 export interface InputProps extends React.ComponentProps<"input"> {
-  label?: string // Legacy prop for backward compatibility
-  helperText?: string // Legacy prop for backward compatibility
+  label?: string
+  helperText?: string
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
