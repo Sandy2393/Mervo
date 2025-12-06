@@ -9,8 +9,8 @@ const htmlEscape = (value: string) =>
     .replace(/'/g, "&#39;");
 
 const renderTemplate = (template: string, data: Record<string, unknown>, escapeHtml = true) =>
-  template.replace(/{{\s*([\w.]+)\s*}}/g, (_match, token) => {
-    const value = token.split(".").reduce<any>((acc, key) => (acc ? acc[key] : undefined), data);
+  template.replace(/{{\s*([\w.]+)\s*}}/g, (_match: string, token: string) => {
+    const value = token.split(".").reduce((acc: any, key: string) => (acc ? acc[key] : undefined), data);
     if (value === undefined || value === null) return "";
     const str = String(value);
     return escapeHtml ? htmlEscape(str) : str;
