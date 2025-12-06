@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { setActiveCompany as persistActiveCompany } from '../../services/auth/companySwitch';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 export default function CompanySelector({ className }) {
     const { companies, activeCompanyId, switchCompany } = useAuth();
     const [open, setOpen] = useState(false);

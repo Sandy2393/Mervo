@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, useEffect } from 'react';
 import { Card, CardBody } from '../ui/Card';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 export default function FirstRunModal({ onStartTour, onSkip }) {
     const [show, setShow] = useState(false);
     useEffect(() => {

@@ -5,7 +5,7 @@ import { jobInstancesService } from '../../services/jobInstancesService';
 import { financeService } from '../../services/financeService';
 import { companyUserService } from '../../services/companyUserService';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/button';
 import PermissionsAwareButton from '../../components/PermissionsAwareButton';
 import CompanySelector from '../../components/selectors/CompanySelector';
 import Toast from '../../components/ui/Toast';

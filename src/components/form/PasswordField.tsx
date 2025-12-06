@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '../ui/Input';
+import { Input } from '../ui/input';
 
 export interface PasswordFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;

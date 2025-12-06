@@ -10,9 +10,9 @@ import { useAuth } from '../../context/AuthContext';
 import { companyUserService } from '../../services/companyUserService';
 import { usernameUtils } from '../../lib/validation/username';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Input } from '../../components/ui/Input';
+import { Input } from '../../components/ui/input';
 import { Select } from '../../components/ui/Select';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/button';
 const ROLE_OPTIONS = [
     'owner_primary',
     'owner_secondary',

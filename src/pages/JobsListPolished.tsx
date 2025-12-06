@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../components/ui/Header";
-import Card from "../components/ui/Card";
-import Button from "../components/ui/Button";
+import { Card } from "../components/ui/Card";
+import { Button } from "../components/ui/button";
 import FormInput from "../components/ui/FormInput";
 import { initTheme } from "../styles/theme";
 

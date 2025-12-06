@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { setActiveCompany } from '../../services/auth/companySwitch';
 import { authService } from '../../services/authService';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/button';
 export default function SelectCompany() {
     const { companies, user, switchCompany } = useAuth();
     const navigate = useNavigate();

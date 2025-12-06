@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect } from "react";
-import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
+import { Button } from "../components/ui/button";
+import { Card } from "../components/ui/Card";
 import { initTheme } from "../styles/theme";
 const todaysJobs = [
     { id: "J-210", title: "Store check", time: "09:00", location: "Brooklyn" },

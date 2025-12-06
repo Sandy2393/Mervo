@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/button';
 import { JobInstance, Job } from '../../types';
 import { jobsService } from '../../services/jobsService';
 import { Link } from 'react-router-dom';

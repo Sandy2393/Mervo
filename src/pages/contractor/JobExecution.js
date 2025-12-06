@@ -15,8 +15,8 @@ import { geoService } from '../../services/geoService';
 import { compressFile } from '../../lib/photo';
 import { offlineJobsQueue } from '../../lib/offlineJobsQueue';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 export default function JobExecution() {
     const { instanceId } = useParams();
     const { user, activeCompanyId } = useAuth();

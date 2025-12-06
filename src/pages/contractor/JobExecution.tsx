@@ -15,8 +15,8 @@ import { geoService } from '../../services/geoService';
 import { compressFile } from '../../lib/photo';
 import { offlineJobsQueue } from '../../lib/offlineJobsQueue';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import { Timesheet, JobInstance, Job } from '../../types';
 
 type JobStatus = 'not-started' | 'in-progress' | 'paused' | 'completed-pending-report';

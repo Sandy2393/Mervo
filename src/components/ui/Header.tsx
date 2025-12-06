@@ -1,6 +1,6 @@
 import ThemeToggle from "./ThemeToggle";
 import Avatar from "./Avatar";
-import Button from "./Button";
+import { Button } from "./button";
 
 interface HeaderProps {
   title?: string;

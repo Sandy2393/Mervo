@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { setActiveCompany as persistActiveCompany } from '../../services/auth/companySwitch';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 
 export default function CompanySelector({ className }: { className?: string }) {
   const { companies, activeCompanyId, switchCompany } = useAuth();

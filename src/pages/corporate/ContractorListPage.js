@@ -6,8 +6,8 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import { usersService } from '../../services/usersService';
 export default function ContractorListPage() {
     const { activeCompanyId } = useAuth();

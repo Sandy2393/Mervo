@@ -1,5 +1,5 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { Button } from './Button';
+import { Button } from './button';
 export const Modal = ({ isOpen, onClose, title, children, onConfirm, confirmText = 'Confirm', cancelText = 'Cancel', isDangerous = false }) => {
     if (!isOpen)
         return null;

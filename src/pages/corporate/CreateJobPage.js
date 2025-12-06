@@ -7,8 +7,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Card, CardBody, CardFooter } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import { Select } from '../../components/ui/Select';
 import { jobsService } from '../../services/jobsService';
 export default function CreateJobPage() {

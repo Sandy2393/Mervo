@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Button } from '../components/ui/Button';
+import { Button } from '../components/ui/button';
 export default function MainLayout({ children }) {
     const { user, companyUser, logout, companies, activeCompanyId, switchCompany } = useAuth();
     const navigate = useNavigate();

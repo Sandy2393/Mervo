@@ -1,5 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { Input } from '../ui/Input';
+import { Input } from '../ui/input';
 import { ENV } from '../../config/env';
 export function normalizeDisplayUsername(v) {
     if (!v)

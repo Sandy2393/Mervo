@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
+import { Button } from "../components/ui/button";
+import { Card } from "../components/ui/Card";
 import FormInput from "../components/ui/FormInput";
 import ThemeToggle from "../components/ui/ThemeToggle";
 import { initTheme } from "../styles/theme";

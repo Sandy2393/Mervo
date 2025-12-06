@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '../ui/Input';
+import { Input } from '../ui/input';
 import { ENV } from '../../config/env';
 
 export interface UsernameFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {

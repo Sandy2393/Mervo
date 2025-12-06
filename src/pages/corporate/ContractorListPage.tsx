@@ -6,8 +6,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import { CompanyUser } from '../../types';
 import { usersService } from '../../services/usersService';
 

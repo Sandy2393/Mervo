@@ -5,7 +5,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
  */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/button';
 import EmployeeList from './EmployeeList';
 import ContractorList from './ContractorList';
 export default function WorkforceHome() {

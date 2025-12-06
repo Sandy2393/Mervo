@@ -5,8 +5,8 @@ import { useAuth } from '../../context/AuthContext';
 import { jobsService } from '../../services/jobsService';
 import { auditService } from '../../services/auditService';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Input } from '../../components/ui/Input';
-import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
 import Toast from '../../components/ui/Toast';
 export default function JobEdit() {
     const { jobId } = useParams();

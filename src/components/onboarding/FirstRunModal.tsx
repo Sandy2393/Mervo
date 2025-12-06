@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, CardBody } from '../ui/Card';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 
 /**
  * FirstRunModal Component

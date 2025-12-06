@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { companyService } from '../../services/companyService';
-import { Input } from '../../components/ui/Input';
-import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
 import { usersService } from '../../services/usersService';
 import { CompanyUser } from '../../types';
 import { CompanyOwner } from '../../types';

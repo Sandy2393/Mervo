@@ -7,8 +7,8 @@ import { jobsService } from '../../services/jobsService';
 import { usersService } from '../../services/usersService';
 import { auditService } from '../../services/auditService';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import { Modal } from '../../components/ui/Modal';
 import Toast from '../../components/ui/Toast';
 export default function JobDetails() {

@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useMemo, useState } from 'react';
 import { companyUserService } from '../../services/companyUserService';
 import { useAuth } from '../../context/AuthContext';
-import { Input } from '../ui/Input';
+import { Input } from '../ui/input';
 export default function ContractorSelector({ onSelect, companyId }) {
     const { activeCompanyId } = useAuth();
     const cid = companyId || activeCompanyId;

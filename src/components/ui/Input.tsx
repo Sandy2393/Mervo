@@ -1,43 +1,40 @@
-/**
- * Input Component — Text input with validation support
- */
+import * as React from "react"
 
-import React from 'react';
+import { cn } from "@/lib/utils"
+import { Label } from "./label"
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  error?: string;
-  helperText?: string;
+export interface InputProps extends React.ComponentProps<"input"> {
+  label?: string // Legacy prop for backward compatibility
+  helperText?: string // Legacy prop for backward compatibility
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, helperText, className = '', ...props }, ref) => {
-    return (
-      <div className="w-full">
-        {label && (
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            {label}
-          </label>
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, label, helperText, ...props }, ref) => {
+    const input = (
+      <input
+        type={type}
+        className={cn(
+          "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          className
         )}
-        <input
-          ref={ref}
-          className={`
-            w-full px-3 py-2 border rounded-lg
-            focus:outline-none focus:ring-2 focus:ring-orange-500
-            ${error ? 'border-red-500' : 'border-gray-300'}
-            ${className}
-          `}
-          {...props}
-        />
-        {error && (
-          <p className="text-red-500 text-sm mt-1">{error}</p>
-        )}
-        {helperText && !error && (
-          <p className="text-gray-500 text-sm mt-1">{helperText}</p>
-        )}
-      </div>
-    );
-  }
-);
+        ref={ref}
+        {...props}
+      />
+    )
 
-Input.displayName = 'Input';
+    if (label) {
+      return (
+        <div className="space-y-2">
+          <Label>{label}</Label>
+          {input}
+          {helperText && <p className="text-sm text-muted-foreground">{helperText}</p>}
+        </div>
+      )
+    }
+
+    return input
+  }
+)
+Input.displayName = "Input"
+
+export { Input }

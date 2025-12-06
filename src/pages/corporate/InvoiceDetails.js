@@ -8,7 +8,7 @@ import { useAuth } from '../../context/AuthContext';
 import { billingService } from '../../services/billingService';
 import { formatCurrency } from '../../lib/currency';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/button';
 export default function InvoiceDetails() {
     const { instanceId } = useParams();
     const { activeCompanyId } = useAuth();

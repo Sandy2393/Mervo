@@ -1,8 +1,8 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useState } from "react";
 import Header from "../components/ui/Header";
-import Card from "../components/ui/Card";
-import Button from "../components/ui/Button";
+import { Card } from "../components/ui/Card";
+import { Button } from "../components/ui/button";
 import FormInput from "../components/ui/FormInput";
 import { initTheme } from "../styles/theme";
 const jobs = [

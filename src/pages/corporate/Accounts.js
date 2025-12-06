@@ -8,7 +8,7 @@ import { companyService } from '../../services/companyService';
 import { financeService } from '../../services/financeService';
 import { billingService } from '../../services/billingService';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/button';
 import { formatCurrency, centsToDecimal } from '../../lib/currency';
 import { Link } from 'react-router-dom';
 export default function Accounts() {

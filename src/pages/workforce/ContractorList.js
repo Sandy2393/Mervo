@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Input } from '../../components/ui/Input';
+import { Input } from '../../components/ui/input';
 export default function ContractorList() {
     const { activeCompanyId } = useAuth();
     const [contractors, setContractors] = useState([]);

@@ -8,7 +8,7 @@ import { useAuth } from '../../context/AuthContext';
 import { jobInstancesService } from '../../services/jobInstancesService';
 import { exportsService } from '../../services/exportsService';
 import { Card, CardBody } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/button';
 export default function PastJobs() {
     const { user, activeCompanyId } = useAuth();
     const [jobs, setJobs] = useState([]);
