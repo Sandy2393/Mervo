@@ -1,0 +1,143 @@
+{
+  "info": {
+    "name": "Mervo API v2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for core Mervo endpoints (auth, jobs, contractors, companies)."
+  },
+  "item": [
+    {
+      "name": "Auth - Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin.demo@mervo.app\",\n  \"password\": \"AdminPass!234\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v2/auth/token",
+          "host": ["{{baseUrl}}"],
+          "path": ["v2", "auth", "token"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Jobs - List",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": {
+          "raw": "{{baseUrl}}/v2/jobs?status=open",
+          "host": ["{{baseUrl}}"],
+          "path": ["v2", "jobs"],
+          "query": [{"key": "status", "value": "open"}]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Jobs - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Authorization", "value": "Bearer {{token}}"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Install router\",\n  \"description\": \"Install router at site\",\n  \"status\": \"open\",\n  \"companyId\": \"{{companyId}}\",\n  \"rate\": 120,\n  \"currency\": \"USD\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v2/jobs",
+          "host": ["{{baseUrl}}"],
+          "path": ["v2", "jobs"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Jobs - Get",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": {
+          "raw": "{{baseUrl}}/v2/jobs/{{jobId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["v2", "jobs", "{{jobId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Contractors - List",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": {
+          "raw": "{{baseUrl}}/v2/contractors",
+          "host": ["{{baseUrl}}"],
+          "path": ["v2", "contractors"]
+        }
+      }
+    },
+    {
+      "name": "Contractors - Invite",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Authorization", "value": "Bearer {{token}}"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Jane Contractor\",\n  \"email\": \"jane.contractor@example.com\",\n  \"phone\": \"+1-555-0100\",\n  \"specializations\": [\"install\", \"inspection\"]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v2/contractors",
+          "host": ["{{baseUrl}}"],
+          "path": ["v2", "contractors"]
+        }
+      }
+    },
+    {
+      "name": "Companies - List",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": {
+          "raw": "{{baseUrl}}/v2/companies",
+          "host": ["{{baseUrl}}"],
+          "path": ["v2", "companies"]
+        }
+      }
+    },
+    {
+      "name": "Companies - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Authorization", "value": "Bearer {{token}}"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Acme Corp\",\n  \"contactEmail\": \"ops@acme.com\",\n  \"contactPhone\": \"+1-555-0200\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v2/companies",
+          "host": ["{{baseUrl}}"],
+          "path": ["v2", "companies"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {"key": "baseUrl", "value": "https://api.mervo.app"},
+    {"key": "token", "value": ""},
+    {"key": "companyId", "value": ""},
+    {"key": "jobId", "value": ""}
+  ]
+}

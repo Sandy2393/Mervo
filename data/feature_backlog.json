@@ -1,0 +1,57 @@
+[
+  {
+    "id": "FB-001",
+    "title": "Offline job queue visibility",
+    "description": "Expose queued offline actions with retry controls in the mobile app",
+    "priority": "P1",
+    "estimate": 5,
+    "epic": "PWA & Offline",
+    "tags": ["offline", "mobile"],
+    "owner": "eng-lead",
+    "acceptanceCriteria": "User sees queued actions, can retry/cancel; queue auto-sends when online"
+  },
+  {
+    "id": "FB-002",
+    "title": "Payroll export v1",
+    "description": "Export completed jobs/timesheets to CSV compatible with payroll providers",
+    "priority": "P1",
+    "estimate": 4,
+    "epic": "Payments & Payroll",
+    "tags": ["payments", "export"],
+    "owner": "payments-pm",
+    "acceptanceCriteria": "CSV downloads include jobs, hours, rates; validated against sample provider"
+  },
+  {
+    "id": "FB-003",
+    "title": "Feedback admin dashboard",
+    "description": "Admins can filter, view, and resolve feedback items",
+    "priority": "P0",
+    "estimate": 3,
+    "epic": "Feedback",
+    "tags": ["feedback", "admin"],
+    "owner": "frontend",
+    "acceptanceCriteria": "List view with filters; resolve action changes status; updates list"
+  },
+  {
+    "id": "FB-004",
+    "title": "SSO/SAML support",
+    "description": "Enterprise SSO integration with SAML 2.0",
+    "priority": "P0",
+    "estimate": 8,
+    "epic": "Enterprise",
+    "tags": ["security", "sso"],
+    "owner": "identity-team",
+    "acceptanceCriteria": "Admins configure SSO; users can login via IdP; fallback local login works"
+  },
+  {
+    "id": "FB-005",
+    "title": "Localization pack (ES, FR, DE)",
+    "description": "UI strings localization and locale-aware formatting",
+    "priority": "P2",
+    "estimate": 6,
+    "epic": "Internationalization",
+    "tags": ["i18n"],
+    "owner": "frontend",
+    "acceptanceCriteria": "Language toggle persists; dates/currency localized; coverage >90% strings"
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "_schema": "Feature flags definition. Boolean and multivariate supported.",
+  "flags": [
+    {
+      "key": "new_ui",
+      "description": "Enable new UI shell",
+      "enabled": true,
+      "type": "boolean",
+      "killSwitch": false,
+      "defaultVariant": "control",
+      "variants": [
+        { "key": "control", "rolloutPercentage": 100 }
+      ],
+      "targetingRules": [
+        {
+          "id": "country-au",
+          "description": "Only AU customers",
+          "condition": { "op": "eq", "field": "country", "value": "AU" }
+        }
+      ]
+    },
+    {
+      "key": "pricing_experiment",
+      "description": "Pricing page experiment",
+      "enabled": true,
+      "type": "multivariate",
+      "defaultVariant": "control",
+      "variants": [
+        { "key": "control", "rolloutPercentage": 34 },
+        { "key": "variant_a", "rolloutPercentage": 33, "payload": { "price": 19 } },
+        { "key": "variant_b", "rolloutPercentage": 33, "payload": { "price": 24 } }
+      ],
+      "targetingRules": [
+        {
+          "id": "role-owner",
+          "description": "Owners only",
+          "condition": { "op": "in", "field": "role", "values": ["owner"] }
+        },
+        {
+          "id": "tag-beta",
+          "description": "Beta tagged companies",
+          "condition": { "op": "in", "field": "tags", "values": ["beta", "pricing-test"] }
+        }
+      ],
+      "force": {
+        "user-123": "variant_b"
+      }
+    }
+  ]
+}

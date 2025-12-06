@@ -1,0 +1,33 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: secrets.GCP_SA_KEY != ''
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT }}
+
+      - name: Configure Docker credentials
+        run: gcloud auth configure-docker --quiet
+
+      - name: Build Docker image
+        run: |
+          IMAGE_NAME=gcr.io/${{ secrets.GCP_PROJECT }}/mervo-frontend:${{ github.sha }}
+          docker build -t $IMAGE_NAME ./docker
+          docker push $IMAGE_NAME
+
+      - name: Deploy to Cloud Run
+        run: |
+          IMAGE_NAME=gcr.io/${{ secrets.GCP_PROJECT }}/mervo-frontend:${{ github.sha }}
+          gcloud run deploy mervo-frontend --image=$IMAGE_NAME --region=${{ secrets.GCP_REGION || 'us-central1' }} --platform=managed --allow-unauthenticated

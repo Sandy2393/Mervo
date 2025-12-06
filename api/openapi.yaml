@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: Mervo API (v2)
+  version: 2.0.0
+  description: Minimal contract for core Mervo resources (jobs, contractors, companies, auth).
+servers:
+  - url: https://api.mervo.app
+    description: Production
+  - url: https://staging.api.mervo.app
+    description: Staging
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Job:
+      type: object
+      required: [id, title, status, companyId]
+      properties:
+        id: {type: string, format: uuid}
+        title: {type: string}
+        description: {type: string}
+        status: {type: string, enum: [draft, open, in_progress, completed, cancelled]}
+        companyId: {type: string, format: uuid}
+        contractorId: {type: string, format: uuid, nullable: true}
+        rate: {type: number}
+        currency: {type: string, example: USD}
+        startDate: {type: string, format: date-time}
+        endDate: {type: string, format: date-time, nullable: true}
+        createdAt: {type: string, format: date-time}
+    Contractor:
+      type: object
+      required: [id, fullName, email, phone]
+      properties:
+        id: {type: string, format: uuid}
+        fullName: {type: string}
+        email: {type: string, format: email}
+        phone: {type: string}
+        specializations: {type: array, items: {type: string}}
+        rating: {type: number, minimum: 0, maximum: 5}
+    Company:
+      type: object
+      required: [id, name]
+      properties:
+        id: {type: string, format: uuid}
+        name: {type: string}
+        contactEmail: {type: string, format: email}
+        contactPhone: {type: string}
+    AuthToken:
+      type: object
+      properties:
+        accessToken: {type: string}
+        tokenType: {type: string, example: Bearer}
+        expiresIn: {type: integer, example: 3600}
+security:
+  - bearerAuth: []
+paths:
+  /v2/auth/token:
+    post:
+      summary: Exchange credentials for access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: {type: string, format: email}
+                password: {type: string, format: password}
+      responses:
+        '200':
+          description: Token issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        '401': {description: Invalid credentials}
+  /v2/jobs:
+    get:
+      summary: List jobs
+      parameters:
+        - in: query
+          name: status
+          schema: {type: string}
+        - in: query
+          name: companyId
+          schema: {type: string, format: uuid}
+      responses:
+        '200':
+          description: Jobs returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Job' }
+    post:
+      summary: Create a job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Job'
+      responses:
+        '201': {description: Job created, content: {application/json: {schema: { $ref: '#/components/schemas/Job' }}}}
+  /v2/jobs/{jobId}:
+    get:
+      summary: Get job by id
+      parameters:
+        - in: path
+          name: jobId
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        '200': {description: Job found, content: {application/json: {schema: { $ref: '#/components/schemas/Job' }}}}
+        '404': {description: Not found}
+    patch:
+      summary: Update job
+      parameters:
+        - in: path
+          name: jobId
+          required: true
+          schema: {type: string, format: uuid}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: {type: string}
+                description: {type: string}
+                status: {type: string}
+                contractorId: {type: string, format: uuid}
+      responses:
+        '200': {description: Updated, content: {application/json: {schema: { $ref: '#/components/schemas/Job' }}}}
+  /v2/contractors:
+    get:
+      summary: List contractors
+      parameters:
+        - in: query
+          name: specialization
+          schema: {type: string}
+      responses:
+        '200':
+          description: Contractors returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Contractor' }
+    post:
+      summary: Invite contractor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [fullName, email, phone]
+              properties:
+                fullName: {type: string}
+                email: {type: string, format: email}
+                phone: {type: string}
+                specializations: {type: array, items: {type: string}}
+      responses:
+        '201': {description: Contractor invited, content: {application/json: {schema: { $ref: '#/components/schemas/Contractor' }}}}
+  /v2/companies:
+    get:
+      summary: List companies
+      responses:
+        '200': {description: Companies returned, content: {application/json: {schema: {type: array, items: { $ref: '#/components/schemas/Company' }}}}}
+    post:
+      summary: Create company
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+      responses:
+        '201': {description: Company created, content: {application/json: {schema: { $ref: '#/components/schemas/Company' }}}}

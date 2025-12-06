@@ -1,0 +1,35 @@
+name: expo-build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      EAS_TOKEN: $EAS_TOKEN
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install Expo CLI
+        run: npm install -g expo-cli eas-cli
+      - name: Install deps
+        run: npm install
+      - name: Skip if no token
+        run: |
+          if [ -z "$EAS_TOKEN" ]; then
+            echo "EAS_TOKEN not provided; skipping build.";
+            exit 0;
+          fi
+      - name: Login to EAS
+        run: eas login --token "$EAS_TOKEN"
+      - name: Build preview
+        run: eas build --platform all --non-interactive --profile preview
+        working-directory: mobile/expo-app
+      - name: Artifact note
+        run: echo "Builds are triggered only when EAS_TOKEN is present. Upload to stores is manual (see docs)."

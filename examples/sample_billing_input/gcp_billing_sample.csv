@@ -1,0 +1,11 @@
+service.description,cost,labels.company_tag,resource.name
+Storage,1.20,company-alpha,projects/p1/buckets/b-alpha
+Storage,0.80,company-beta,projects/p1/buckets/b-beta
+Egress,0.50,company-alpha,projects/p1/buckets/b-alpha
+Egress,0.30,company-gamma,projects/p1/buckets/b-gamma
+Functions,0.40,company-alpha,projects/p1/functions/f-alpha
+Functions,0.25,company-beta,projects/p1/functions/f-beta
+Database,0.90,company-beta,projects/p1/instances/db-beta
+Database,0.60,company-alpha,projects/p1/instances/db-alpha
+Storage,0.15,,projects/p1/buckets/b-unknown
+Egress,0.10,,projects/p1/buckets/b-unknown

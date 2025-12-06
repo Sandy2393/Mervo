@@ -1,0 +1,10 @@
+--- a/src/components/Button.tsx
++++ b/src/components/Button.tsx
+@@
+-  return <button>{label}</button>;
++  return <button aria-label={label}>{label}</button>;
+--- a/e2e/tests/contractor-flow.spec.ts
++++ b/e2e/tests/contractor-flow.spec.ts
+@@
+-    await page.click("text=Submit report");
++    await page.click('[aria-label="Submit report"]');

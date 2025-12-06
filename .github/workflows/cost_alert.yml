@@ -1,0 +1,32 @@
+name: cost-alert
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  cost-alert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run billing parser (placeholder)
+        run: |
+          echo "TODO: download billing CSV from billing bucket"
+          python scripts/parse_gcp_billing.py --input billing.csv --output per_company.json --dry-run || true
+
+      - name: Check budgets (placeholder)
+        run: |
+          echo "TODO: load budgets from Supabase/settings"
+          echo "TODO: compare totals and open issue or notify webhook"
+
+      - name: Notify (placeholder)
+        run: |
+          echo "TODO: post to webhook if thresholds exceeded"

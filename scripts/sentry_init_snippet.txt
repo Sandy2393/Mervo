@@ -1,0 +1,7 @@
+// Example Sentry minimal init (no DSN here)
+// Add this to src/main.tsx or similar entry point (server/client as appropriate)
+
+// import * as Sentry from '@sentry/react';
+// Sentry.init({ dsn: process.env.SENTRY_DSN || '', tracesSampleRate: 0.1 });
+
+// TODO: Store SENTRY_DSN in platform secrets and enable performance monitoring in production with low sample rates.

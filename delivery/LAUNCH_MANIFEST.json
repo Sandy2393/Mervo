@@ -1,0 +1,53 @@
+{
+  "pack": "APP_ID Launch & Commercialization",
+  "contacts": {
+    "ops": "ops@APP_ID",
+    "support": "support@APP_ID",
+    "sales": "sales@APP_ID"
+  },
+  "files": [
+    "launch/GO_LIVE_CHECKLIST.md",
+    "launch/DNS_TLS_RUNBOOK.md",
+    "launch/DB_MIGRATION_RUNBOOK.md",
+    "launch/SMOKE_TESTS.md",
+    "launch/ROLLBACK_PROCEDURE.md",
+    "monitoring/ON_CALL_PLAYBOOK.md",
+    "monitoring/ALERTING_RULES_SUMMARY.md",
+    "monitoring/DASHBOARD_FINAL_SPEC.md",
+    "monitoring/SMOKE_TEST_SCRIPT.sh",
+    "security/SECURITY_SIGNOFF_CHECKLIST.md",
+    "security/PENTEST_PREP.md",
+    "security/INCIDENT_COMMUNICATION_TEMPLATES.md",
+    "commercial/PRICING_SHEET.md",
+    "commercial/SALES_ONE_PAGER.md",
+    "commercial/PRESS_KIT.zip_MANIFEST.md",
+    "commercial/LAUNCH_ANNOUNCEMENT.md",
+    "commercial/SLA_TEMPLATE.md",
+    "handover/CLIENT_TRANSFER_CHECKLIST.md",
+    "handover/ADMIN_GUIDE_QUICKSTART.md",
+    "handover/HANDOVER_PACKAGE_INDEX.json",
+    "support/24_7_SUPPORT_PLAN.md",
+    "support/TRAINING_WORKSHOP_PLAN.md",
+    "support/FAQ_CUSTOMER.md",
+    "legal/MSA_TEMPLATE.md",
+    "legal/DPA_TEMPLATE.md",
+    "legal/PRIVACY_POLICY_FINAL.md",
+    "billing/BILLING_RUNBOOK.md",
+    "billing/INVOICE_TEMPLATE.csv",
+    "billing/BILLING_MONITOR_SCRIPT.sh",
+    "growth/90_DAY_PRODUCT_ROADMAP.md",
+    "growth/EMAIL_DRIP_CAMPAIGN.md",
+    "kpis/LAUNCH_KPIS.md",
+    "kpis/LAUNCH_DASHBOARD_QUERY_SNIPPETS.md",
+    "ops/POST_LAUNCH_30_60_90_PLAN.md",
+    "ops/CUSTOMER_FEEDBACK_CAPTURE.md",
+    "support/24_7_SUPPORT_PLAN.md",
+    "delivery/FINAL_DELIVERABLES_CHECKLIST.md"
+  ],
+  "next_steps": [
+    "Replace placeholders with real contacts and URLs",
+    "Upload press kit assets",
+    "Configure alerts and webhooks",
+    "Run smoke tests with production tokens"
+  ]
+}

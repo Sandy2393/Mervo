@@ -1,0 +1,218 @@
+{
+  "jobReportExamples": [
+    {
+      "id": "example-1",
+      "title": "Electrician Circuit Installation",
+      "input": {
+        "jobTitle": "Electrician",
+        "location": "Sydney, NSW",
+        "hoursWorked": 8,
+        "notesFromWorker": "Installed new circuit breaker in Building A. Completed safety inspection. Had to wait 2 hours for building manager to access roof.",
+        "photosOCR": [
+          "Electrical panel with label 'Building A Main'",
+          "Safety certificate dated 2025-01-15"
+        ]
+      },
+      "expectedOutput": {
+        "summary": "Electrician installed new circuit breaker in Building A and completed safety inspection. Work delayed by 2 hours awaiting building manager access.",
+        "tasks_completed": [
+          "Installed new circuit breaker",
+          "Completed safety inspection"
+        ],
+        "challenges": "Delayed 2 hours waiting for building manager key access",
+        "safety_notes": "Safety inspection completed and documented",
+        "follow_up_required": false,
+        "follow_up_reason": null
+      }
+    },
+    {
+      "id": "example-2",
+      "title": "Plumber Emergency Callout",
+      "input": {
+        "jobTitle": "Plumber",
+        "location": "Melbourne, VIC",
+        "hoursWorked": 3,
+        "notesFromWorker": "Emergency callout - water leak under kitchen sink. Replaced washer and tightened connection. Customer satisfied. No photos available.",
+        "photosOCR": []
+      },
+      "expectedOutput": {
+        "summary": "Plumber responded to emergency water leak under kitchen sink. Replaced washer and tightened connection. Customer satisfied.",
+        "tasks_completed": [
+          "Diagnosed water leak",
+          "Replaced washer",
+          "Tightened connection"
+        ],
+        "challenges": "None",
+        "safety_notes": "No issues",
+        "follow_up_required": false,
+        "follow_up_reason": null
+      }
+    },
+    {
+      "id": "example-3",
+      "title": "Carpenter with Issues",
+      "input": {
+        "jobTitle": "Carpenter",
+        "location": "Brisbane, QLD",
+        "hoursWorked": 6,
+        "notesFromWorker": "Custom shelving installation - mostly completed. Owner requested design change mid-job. Need to return tomorrow to finish adjustments. Ran out of materials (special brackets).",
+        "photosOCR": [
+          "Partially installed shelving with visible gaps"
+        ]
+      },
+      "expectedOutput": {
+        "summary": "Carpenter installed custom shelving; owner requested design changes mid-project. Work paused; follow-up scheduled for material adjustment and completion.",
+        "tasks_completed": [
+          "Installed main shelving structure",
+          "Partial bracket installation"
+        ],
+        "challenges": "Owner design change; ran out of special brackets",
+        "safety_notes": "Shelving secured; safe to pause work",
+        "follow_up_required": true,
+        "follow_up_reason": "Return visit needed: 1) Install new brackets per updated design 2) Adjust shelving alignment 3) Final touch-up"
+      }
+    },
+    {
+      "id": "example-4",
+      "title": "Gardening Maintenance Crew",
+      "input": {
+        "jobTitle": "Gardener",
+        "location": "Perth, WA",
+        "hoursWorked": 4,
+        "notesFromWorker": "Regular lawn mow, hedge trim, and garden cleanup. Rotated garden beds. Customer mentioned previous contractor never trimmed hedges, so took extra time. All work completed to customer satisfaction.",
+        "photosOCR": []
+      },
+      "expectedOutput": {
+        "summary": "Gardener completed lawn mowing, hedge trimming, and garden cleanup. Customer satisfied. Garden beds rotated for seasonal maintenance.",
+        "tasks_completed": [
+          "Lawn mowing",
+          "Hedge trimming",
+          "Garden cleanup",
+          "Garden bed rotation"
+        ],
+        "challenges": "Extra time spent on hedge trimming due to previous neglect",
+        "safety_notes": "No issues",
+        "follow_up_required": false,
+        "follow_up_reason": null
+      }
+    }
+  ],
+  "moderationExamples": [
+    {
+      "id": "mod-1",
+      "title": "Clean Report",
+      "input": "Electrician completed circuit breaker installation and safety inspection. No issues.",
+      "expectedOutput": {
+        "profanity": 0.0,
+        "hate_speech": 0.0,
+        "sexual_content": 0.0,
+        "violence": 0.0,
+        "pii_exposure": 0.0,
+        "overall_risk": "low",
+        "reason": "Factual work report with no policy violations."
+      }
+    },
+    {
+      "id": "mod-2",
+      "title": "PII Exposure",
+      "input": "Contact John Smith at john@example.com or 0412345678 if you have questions about the work.",
+      "expectedOutput": {
+        "profanity": 0.0,
+        "hate_speech": 0.0,
+        "sexual_content": 0.0,
+        "violence": 0.0,
+        "pii_exposure": 0.95,
+        "overall_risk": "high",
+        "reason": "Contains personal email address, phone number, and full name. Should have been redacted."
+      }
+    },
+    {
+      "id": "mod-3",
+      "title": "Mild Profanity",
+      "input": "Damn, that was a tricky job but we got it done. Customer is happy.",
+      "expectedOutput": {
+        "profanity": 0.4,
+        "hate_speech": 0.0,
+        "sexual_content": 0.0,
+        "violence": 0.0,
+        "pii_exposure": 0.0,
+        "overall_risk": "low",
+        "reason": "Mild profanity below threshold (0.7). Work report is professional overall."
+      }
+    },
+    {
+      "id": "mod-4",
+      "title": "Hate Speech Flag",
+      "input": "Job completed, but those workers from that group are useless and always mess up.",
+      "expectedOutput": {
+        "profanity": 0.2,
+        "hate_speech": 0.85,
+        "sexual_content": 0.0,
+        "violence": 0.0,
+        "pii_exposure": 0.0,
+        "overall_risk": "high",
+        "reason": "Discriminatory language and group stereotyping detected. Escalate to human review."
+      }
+    }
+  ],
+  "imageExtractionExamples": [
+    {
+      "id": "img-1",
+      "title": "Safety Certificate",
+      "expectedOutput": {
+        "text_content": "Safety Inspection Certificate\nDate: 2025-01-15\nLocation: Building A\nInspector: [NAME_REDACTED]\nCompliance Status: PASS",
+        "document_type": "safety certificate",
+        "key_fields": {
+          "date": "2025-01-15",
+          "location": "Building A",
+          "person_or_company": null
+        },
+        "quality_score": 0.95,
+        "notes": "Clear, high-contrast document. All information readable."
+      }
+    },
+    {
+      "id": "img-2",
+      "title": "Blurry Work Site Photo",
+      "expectedOutput": {
+        "text_content": "Electrical panel (text illegible due to blur)",
+        "document_type": "photo",
+        "key_fields": {
+          "date": null,
+          "location": null,
+          "person_or_company": null
+        },
+        "quality_score": 0.35,
+        "notes": "Image is significantly blurred. Text content unreliable. Recommend re-upload with clearer photo."
+      }
+    }
+  ],
+  "summaryExamples": [
+    {
+      "id": "summary-1",
+      "title": "Multi-Report Summary",
+      "input": [
+        {
+          "summary": "Electrician completed circuit breaker installation and safety inspection.",
+          "tasks_completed": ["Installed circuit breaker", "Safety inspection"]
+        },
+        {
+          "summary": "Plumber fixed water leak under kitchen sink by replacing washer.",
+          "tasks_completed": ["Fixed leak", "Replaced washer"]
+        }
+      ],
+      "expectedOutput": "2 jobs completed • Electrical and plumbing work • No blockers"
+    },
+    {
+      "id": "summary-2",
+      "title": "Summary with Follow-up",
+      "input": [
+        {
+          "summary": "Carpenter installed custom shelving; design changes needed mid-project.",
+          "tasks_completed": ["Installed main structure", "Partial installation"]
+        }
+      ],
+      "expectedOutput": "1 job in progress • Custom shelving installation • Follow-up required"
+    }
+  ]
+}

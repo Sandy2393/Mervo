@@ -1,0 +1,5 @@
+[
+  { "id": "low_activity", "metric": "jobs_per_week", "op": "<", "threshold": 1, "severity": "high", "action": "Schedule training" },
+  { "id": "overdue_approvals", "metric": "overdue_approvals", "op": ">", "threshold": 3, "severity": "medium", "action": "Escalate to admin" },
+  { "id": "storage_spike", "metric": "storage_growth_pct", "op": ">", "threshold": 50, "severity": "low", "action": "Review uploads" }
+]

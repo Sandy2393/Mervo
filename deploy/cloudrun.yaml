@@ -1,0 +1,24 @@
+# Cloud Run service template for Mervo frontend static container
+# TODO: Replace values and secrets before deploying
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: mervo-frontend
+  namespace: YOUR_PROJECT
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/YOUR_PROJECT/mervo-frontend:latest
+          env:
+            - name: VITE_SUPABASE_URL
+              value: "${VITE_SUPABASE_URL}"
+            - name: VITE_SUPABASE_ANON_KEY
+              value: "${VITE_SUPABASE_ANON_KEY}"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+  traffic:
+    - latestRevision: true
+      percent: 100

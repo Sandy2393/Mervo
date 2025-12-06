@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: test
+    ports: ["5432:5432"]
+  app:
+    build:
+      context: ..
+      dockerfile: ./docker/test.Dockerfile
+    environment:
+      DATABASE_URL: postgres://postgres:test@db:5432/postgres
+    depends_on:
+      - db

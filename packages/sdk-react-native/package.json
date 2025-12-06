@@ -1,0 +1,17 @@
+{
+  "name": "@app-id/sdk-react-native",
+  "version": "0.1.0",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "react-native": "*"
+  },
+  "dependencies": {
+    "@app-id/sdk-js": "workspace:*"
+  }
+}

@@ -1,0 +1,31 @@
+name: Release Deploy
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://placeholder-production
+    env:
+      NODE_VERSION: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run lint --if-present
+      - run: npm test -- --runInBand
+      - name: Security scan
+        run: |
+          echo "TODO: run semgrep/dependency scan"
+      - name: Await approval
+        uses: trstringer/manual-approval@v1
+        with:
+          approvers: "team"
+      - name: Deploy
+        run: |
+          echo "TODO: deploy to prod"

@@ -1,0 +1,33 @@
+{
+  "name": "Mervo Analytics",
+  "dashboards": [
+    {
+      "name": "Executive Dashboard",
+      "cards": [
+        {"name": "MAU", "query": "select count(distinct user_id) as mau from ${DATASET_ANALYTICS}.daily_company_metrics where date >= date_sub(current_date(), interval 30 day);"},
+        {"name": "Jobs per week", "query": "select date_trunc(date, week) as week, sum(jobs_completed) from ${DATASET_ANALYTICS}.daily_company_metrics group by 1 order by 1"},
+        {"name": "Revenue", "query": "select date, sum(revenue_cents)/100 as revenue from ${DATASET_ANALYTICS}.daily_company_metrics group by 1 order by 1"}
+      ]
+    },
+    {
+      "name": "Operations Dashboard",
+      "cards": [
+        {"name": "Pending approvals", "query": "select company_id, sum(jobs_created - jobs_completed) as pending from ${DATASET_ANALYTICS}.daily_company_metrics group by 1 order by pending desc"},
+        {"name": "Overdue jobs", "query": "-- TODO: add overdue logic"}
+      ]
+    },
+    {
+      "name": "CS Dashboard",
+      "cards": [
+        {"name": "Onboarding funnel", "query": "select stage, count(*) from ${DATASET_ANALYTICS}.staging_events where event_type like 'onboarding.%' group by 1"}
+      ]
+    },
+    {
+      "name": "Finance Dashboard",
+      "cards": [
+        {"name": "Revenue vs Payouts", "query": "select date, sum(revenue_cents)/100 as revenue, sum(payouts_cents)/100 as payouts from ${DATASET_ANALYTICS}.daily_company_metrics group by 1 order by 1"},
+        {"name": "AR", "query": "-- TODO: add AR aging query"}
+      ]
+    }
+  ]
+}

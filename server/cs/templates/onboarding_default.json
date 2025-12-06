@@ -1,0 +1,11 @@
+{
+  "id": "onboarding_default",
+  "steps": [
+    { "id": "account_created", "name": "Account created", "delayHours": 0, "channels": ["email"], "templateKey": "welcome_email" },
+    { "id": "add_employees", "name": "Add employees", "delayHours": 24, "channels": ["email", "in-app"] },
+    { "id": "post_first_job", "name": "Post first job", "delayHours": 48, "channels": ["in-app", "crm"] },
+    { "id": "approve_first_job", "name": "Approve first job", "delayHours": 72, "channels": ["email"] },
+    { "id": "invite_contractors", "name": "Invite contractors", "delayHours": 96, "channels": ["email", "in-app"] },
+    { "id": "training_scheduled", "name": "Training scheduled", "delayHours": 120, "channels": ["email"] }
+  ]
+}

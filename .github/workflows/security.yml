@@ -1,0 +1,26 @@
+name: Security
+on:
+  pull_request:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: Semgrep
+        run: |
+          echo "TODO: run semgrep with rules/security/semgrep_rules.yml"
+      - name: Dependency check
+        run: ./security/dependency_check.sh
+      - name: Container scan
+        run: |
+          echo "TODO: trivy image scan"

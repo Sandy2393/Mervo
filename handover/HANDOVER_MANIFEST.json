@@ -1,0 +1,53 @@
+{
+  "project": "Mervo",
+  "generated": "2025-12-06",
+  "owner": "Client",
+  "contact": "support@mervo.app",
+  "artifacts": {
+    "release": [
+      "handover/release/CHANGELOG.md",
+      "handover/release/RELEASE_NOTES_TEMPLATE.md",
+      "handover/release/ROLLBACK_PLAN.md",
+      "handover/release/tag_and_release.sh"
+    ],
+    "demo": [
+      "demo/seed_data.sql",
+      "demo/generate_demo_data.ts",
+      "demo/seed_uploads/README.md"
+    ],
+    "support": [
+      "support/SUPPORT_PLAN.md",
+      "support/MAINTENANCE_SCHEDULE.md",
+      "support/CLIENT_ONBOARDING_EMAILS.md"
+    ],
+    "devops": [
+      "devops/REPO_HANDOFF.md",
+      "devops/cleanup_repo.sh",
+      "devops/create_demo_accounts.sh"
+    ],
+    "api": [
+      "api/openapi.yaml",
+      "api/POSTMAN_COLLECTION.json"
+    ],
+    "qa": [
+      "qa/CLIENT_ACCEPTANCE_TESTS.md",
+      "qa/SMOKE_TEST_SCRIPT.sh"
+    ],
+    "training": [
+      "training/ADMIN_WORKSHOP_PLAN.md",
+      "training/VIDEO_SCRIPT_ADMIN.md",
+      "training/VIDEO_SCRIPT_CONTRACTOR.md",
+      "handover/ADMIN_TRAINING_SLIDES.md",
+      "handover/CONTRACTOR_TRAINING_SLIDES.md"
+    ],
+    "legal": [
+      "LICENSE",
+      "handover/PRIVACY_STATEMENT_TEMPLATE.md"
+    ]
+  },
+  "notes": [
+    "Supabase credentials remain placeholders; use non-prod keys for demos",
+    "Changelog Unreleased section contains TODO placeholders",
+    "Smoke test script requires BASE_URL and TOKEN"
+  ]
+}

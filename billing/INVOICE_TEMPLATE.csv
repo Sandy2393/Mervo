@@ -1,0 +1,4 @@
+invoice_number,company_tag,line_item,qty,unit_price_cents,tax_cents,total_cents
+INV-0001,APP_TAG,Subscription Starter,1,49900,0,49900
+INV-0002,APP_TAG,Overage API (1M calls),2,10000,0,20000
+INV-0003,APP_TAG,Payroll add-on,40,30,0,1200

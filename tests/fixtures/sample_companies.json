@@ -1,0 +1,4 @@
+[
+  { "company_id": "c1", "name": "Acme", "users": [{ "user_id": "u1", "email": "admin@example.com" }] },
+  { "company_id": "c2", "name": "Beta", "users": [{ "user_id": "u2", "email": "contractor@example.com" }] }
+]

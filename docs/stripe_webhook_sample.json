@@ -1,0 +1,21 @@
+{
+  "id": "evt_123",
+  "object": "event",
+  "api_version": "2023-10-16",
+  "created": 1700000000,
+  "livemode": false,
+  "type": "payment_intent.succeeded",
+  "data": {
+    "object": {
+      "id": "pi_123",
+      "object": "payment_intent",
+      "amount": 1999,
+      "currency": "usd",
+      "customer": "cus_123",
+      "status": "succeeded",
+      "metadata": {
+        "company_id": "company_abc"
+      }
+    }
+  }
+}

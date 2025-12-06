@@ -1,0 +1,35 @@
+tables:
+  - name: raw_events
+    dataset: ${DATASET_RAW}
+    owner: data-team
+    sensitivity: PII
+    retentionDays: 30
+    refresh: streaming
+    description: Canonical raw events landing table.
+  - name: staging_events
+    dataset: ${DATASET_ANALYTICS}
+    owner: data-team
+    sensitivity: tokenized
+    retentionDays: 365
+    refresh: daily
+    description: Parsed events with basic tokenization.
+  - name: fact_jobs
+    dataset: ${DATASET_ANALYTICS}
+    owner: data-team
+    sensitivity: Non-PII
+    refresh: daily
+  - name: dim_users
+    dataset: ${DATASET_ANALYTICS}
+    owner: data-team
+    sensitivity: tokenized
+    refresh: daily
+  - name: dim_companies
+    dataset: ${DATASET_ANALYTICS}
+    owner: data-team
+    sensitivity: Non-PII
+    refresh: daily
+  - name: daily_company_metrics
+    dataset: ${DATASET_ANALYTICS}
+    owner: data-team
+    sensitivity: Non-PII
+    refresh: daily
