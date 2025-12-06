@@ -172,21 +172,19 @@ function AppContent() {
         }
       />
 
-      {/* Fallback */}
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      <Route path="*" element={<Navigate to="/dashboard" replace />} />
-
-      {/* Super Admin */}
+      {/* Super Admin - No auth required for initial setup */}
       <Route
         path="/super-admin"
         element={
-          <ProtectedRoute>
-            <MainLayout>
-              <SuperAdminPanel />
-            </MainLayout>
-          </ProtectedRoute>
+          <MainLayout>
+            <SuperAdminPanel />
+          </MainLayout>
         }
       />
+
+      {/* Fallback */}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );
 }
