@@ -11,6 +11,7 @@ import AccountLinkingSettingsPage from './pages/settings/AccountLinkingSettingsP
 import CorporateDashboard from './pages/corporate/CorporateDashboard';
 import CompanySettings from './pages/corporate/CompanySettings';
 import SuperAdminPanel from './pages/super-admin/SuperAdminPanel';
+import SuperAdminLogin from './pages/super-admin/SuperAdminLogin';
 import CreateJobPage from './pages/corporate/CreateJobPage';
 import ContractorListPage from './pages/corporate/ContractorListPage';
 import ContractorTodayDashboard from './pages/contractor/ContractorTodayDashboard';
@@ -172,7 +173,10 @@ function AppContent() {
         }
       />
 
-      {/* Super Admin - No auth required for initial setup */}
+      {/* Super Admin Login - With secret key validation */}
+      <Route path="/super-admin/login" element={<SuperAdminLogin />} />
+
+      {/* Super Admin Panel */}
       <Route
         path="/super-admin"
         element={
