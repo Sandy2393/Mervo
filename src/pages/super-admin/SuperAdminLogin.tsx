@@ -51,18 +51,21 @@ export default function SuperAdminLogin() {
       const { data: userData, error: userError } = await supabase
         .from('users')
         .select('role')
-        .eq('email', email)
-        .single();
+        .eq('email', email);
 
       if (userError) throw userError;
+      if (!userData || userData.length === 0) {
+        await supabase.auth.signOut();
+        throw new Error('User not found in database');
+      }
 
-      if (userData.role !== 'super_admin') {
+      if (userData[0].role !== 'super_admin') {
         await supabase.auth.signOut();
         throw new Error('Unauthorized: Super admin access only');
       }
 
       // Success - navigate to super admin panel
-      navigate('/super-admin/dashboard');
+      navigate('/super-admin');
     } catch (err: any) {
       setError(err.message || 'Invalid credentials');
     } finally {
