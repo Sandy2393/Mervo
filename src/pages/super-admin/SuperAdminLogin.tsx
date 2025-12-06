@@ -53,21 +53,19 @@ export default function SuperAdminLogin() {
       if (userError) throw userError;
       if (!user) throw new Error('User authentication failed');
 
-      // Debug: log the user object to see what we're getting
-      console.log('User object:', user);
-      console.log('is_super_admin:', (user as any).is_super_admin);
-      console.log('raw_app_meta_data:', (user as any).raw_app_meta_data);
-      console.log('app_metadata:', (user as any).app_metadata);
+      // Query auth.users table directly to check is_super_admin flag
+      const { data: authUserData, error: authError } = await supabase
+        .from('auth.users')
+        .select('is_super_admin')
+        .eq('id', user.id)
+        .single();
 
-      // Check if user is super admin
-      const isSuperAdmin = 
-        (user as any).is_super_admin === true || 
-        (user as any).raw_app_meta_data?.is_super_admin === true ||
-        (user as any).app_metadata?.is_super_admin === true;
-      
-      if (!isSuperAdmin) {
+      if (authError) throw authError;
+      if (!authUserData) throw new Error('User not found in auth table');
+
+      if (!authUserData.is_super_admin) {
         await supabase.auth.signOut();
-        throw new Error('Unauthorized: Super admin access only. Debug info logged to console.');
+        throw new Error('Unauthorized: Super admin access only');
       }
 
       // Success - navigate to super admin panel
