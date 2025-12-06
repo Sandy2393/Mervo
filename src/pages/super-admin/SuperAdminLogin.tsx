@@ -47,19 +47,16 @@ export default function SuperAdminLogin() {
 
       if (signInError) throw signInError;
 
-      // Verify user is super admin
-      const { data: userData, error: userError } = await supabase
-        .from('users')
-        .select('role')
-        .eq('email', email);
+      // Get the authenticated user
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
 
       if (userError) throw userError;
-      if (!userData || userData.length === 0) {
-        await supabase.auth.signOut();
-        throw new Error('User not found in database');
-      }
+      if (!user) throw new Error('User authentication failed');
 
-      if (userData[0].role !== 'super_admin') {
+      // Check if user is super admin (check raw_app_meta_data)
+      const isSuperAdmin = (user as any).is_super_admin || (user as any).raw_app_meta_data?.is_super_admin;
+      
+      if (!isSuperAdmin) {
         await supabase.auth.signOut();
         throw new Error('Unauthorized: Super admin access only');
       }
