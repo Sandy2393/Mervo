@@ -24,7 +24,7 @@ export async function listTemplates(companyId: string) {
 
 export function renderPreview(template: any, data: Record<string, unknown>) {
   const subject = template.subject ? renderTemplate(template.subject, data) : "(no subject)";
-  const text = template.body_text ? renderTemplate(template.body_text, data, { escapeHtml: false }) : "";
+  const text = template.body_text ? renderTemplate(template.body_text, data, false) : "";
   const html = template.body_html ? renderTemplate(template.body_html, data) : "";
   return { subject, text, html };
 }
