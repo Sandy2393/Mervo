@@ -20,7 +20,7 @@
 export const ENV = {
     SUPABASE_URL: 'https://lnaghkkodbguhwhffiyl.supabase.co',
     SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxuYWdoa2tvZGJndWh3aGZmaXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ4NTEzMTcsImV4cCI6MjA4MDQyNzMxN30.pTJtS5RDnXbR_rfRQ4HMohWVUwXqGK_qzKOsb85mTaE',
-    APP_ID: 'MERVO_APP',
+    APP_ID: 'MERVO',
     APP_TAG: 'mervo'
 };
 // Safety check: warn if placeholders remain in production

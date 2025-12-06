@@ -17,6 +17,11 @@ export default function SuperAdminLogin() {
   const secretKey = searchParams.get('key');
   const hasValidKey = secretKey === SUPER_ADMIN_KEY;
 
+  // Debug logging (remove in production)
+  console.log('Expected key:', SUPER_ADMIN_KEY);
+  console.log('Provided key:', secretKey);
+  console.log('Valid?:', hasValidKey);
+
   if (!hasValidKey) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
@@ -26,6 +31,12 @@ export default function SuperAdminLogin() {
               <h1 className="text-2xl font-bold text-gray-900">Access Denied</h1>
               <p className="text-gray-600 mt-2">Invalid or missing admin key</p>
               <p className="text-red-600 mt-4 font-semibold">🔒 Unauthorized Access</p>
+              {import.meta.env.DEV && (
+                <div className="mt-4 text-xs text-left bg-gray-100 p-2 rounded">
+                  <p>Expected: {SUPER_ADMIN_KEY}</p>
+                  <p>Provided: {secretKey || '(none)'}</p>
+                </div>
+              )}
             </div>
           </CardBody>
         </Card>

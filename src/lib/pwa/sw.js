@@ -1,4 +1,3 @@
-"use strict";
 // @ts-nocheck
 /*
   Minimal Service Worker for Mervo (placeholder)
