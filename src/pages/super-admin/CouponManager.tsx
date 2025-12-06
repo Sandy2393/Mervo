@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { superAdminFetch } from '../../lib/session/companyContext';
 
 interface CouponDefinition {
   id: string;
@@ -57,7 +58,7 @@ export default function CouponManager() {
 
   const fetchCoupons = async () => {
     try {
-      const res = await fetch('/api/super-admin/billing/coupons');
+      const res = await superAdminFetch('/api/super-admin/billing/coupons');
       const data = await res.json();
       setCoupons(data);
     } catch (error) {
@@ -69,7 +70,7 @@ export default function CouponManager() {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch('/api/super-admin/billing/coupons/stats');
+      const res = await superAdminFetch('/api/super-admin/billing/coupons/stats');
       const data = await res.json();
       setStats(data);
     } catch (error) {
@@ -86,7 +87,7 @@ export default function CouponManager() {
     }
 
     try {
-      await fetch('/api/super-admin/billing/coupons', {
+      await superAdminFetch('/api/super-admin/billing/coupons', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

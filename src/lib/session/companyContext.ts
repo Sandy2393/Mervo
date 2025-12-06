@@ -23,10 +23,29 @@ export function withCompanyHeaders(init: RequestInit = {}, companyId?: string): 
   const headers = new Headers(init.headers || {});
   const active = companyId || getActiveCompanyId();
   if (active) headers.set("x-company-id", active);
+  if (typeof window !== "undefined") {
+    const raw = localStorage.getItem("super_admin_user");
+    if (raw) {
+      headers.set("x-role", "super_admin");
+      try {
+        const parsed = JSON.parse(raw);
+        if (parsed?.id) headers.set("x-user-id", parsed.id);
+        if (parsed?.email) headers.set("x-user", parsed.email);
+      } catch (_err) {
+        // ignore parsing issues
+      }
+    }
+  }
   return { ...init, headers };
 }
 
 export async function authedFetch(input: RequestInfo | URL, init: RequestInit = {}) {
   const nextInit = withCompanyHeaders(init);
+  return fetch(input, nextInit);
+}
+
+export async function superAdminFetch(input: RequestInfo | URL, init: RequestInit = {}) {
+  const headers = new Headers(init.headers || {});
+  const nextInit = withCompanyHeaders({ ...init, headers });
   return fetch(input, nextInit);
 }

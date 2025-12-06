@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { authedFetch } from "../../lib/session/companyContext";
+import { superAdminFetch } from "../../lib/session/companyContext";
 
 interface Company {
   id: string;
@@ -18,16 +18,16 @@ export default function SuperAdminDashboard() {
   }, []);
 
   async function load() {
-    const resp = await authedFetch("/api/super-admin/companies");
+    const resp = await superAdminFetch("/api/super-admin/companies");
     if (resp.ok) {
       const data = await resp.json();
-      setCompanies(data);
+      setCompanies(data.items || data || []);
     }
   }
 
   async function act(companyId: string, action: string) {
     setStatus(`Running ${action}...`);
-    const resp = await authedFetch(`/api/super-admin/company/${companyId}`, {
+    const resp = await superAdminFetch(`/api/super-admin/company/${companyId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action }),

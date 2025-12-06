@@ -15,6 +15,8 @@ export interface Company {
 export interface ListCompaniesOptions {
   status?: "active" | "suspended";
   limit?: number;
+  offset?: number;
+  q?: string;
 }
 
 interface AuditSink {
@@ -23,6 +25,45 @@ interface AuditSink {
 
 const companies: Company[] = [];
 const auditLog: any[] = [];
+
+// Seed a few demo companies so the super-admin UI is not empty in development/demo
+if (companies.length === 0) {
+  companies.push(
+    {
+      id: "acme-co",
+      name: "Acme Co",
+      status: "active",
+      owner_email: "owner@acme.test",
+      owner_phone: "+61400000001",
+      created_at: nowIso(),
+      storage_bytes: 7_500_000,
+      workforce_count: 42,
+      retention_media_days: 180,
+    },
+    {
+      id: "globex",
+      name: "Globex",
+      status: "suspended",
+      owner_email: "ops@globex.test",
+      owner_phone: "+61400000002",
+      created_at: nowIso(),
+      storage_bytes: 2_100_000,
+      workforce_count: 15,
+      retention_media_days: 90,
+    },
+    {
+      id: "initech",
+      name: "Initech",
+      status: "active",
+      owner_email: "founder@initech.test",
+      owner_phone: "+61400000003",
+      created_at: nowIso(),
+      storage_bytes: 4_400_000,
+      workforce_count: 23,
+      retention_media_days: 365,
+    }
+  );
+}
 
 function nowIso() {
   return new Date().toISOString();
@@ -51,9 +92,15 @@ export class SuperAdminService {
   constructor(private audit: AuditSink = log) {}
 
   listCompanies(opts: ListCompaniesOptions = {}): Company[] {
-    const filtered = opts.status ? companies.filter((c) => c.status === opts.status) : companies;
-    const limited = opts.limit ? filtered.slice(0, opts.limit) : filtered;
-    return limited.map((c) => ({ ...c, owner_email: maskEmail(c.owner_email), owner_phone: maskPhone(c.owner_phone) }));
+    let filtered = opts.status ? companies.filter((c) => c.status === opts.status) : companies;
+    if (opts.q) {
+      const q = opts.q.toLowerCase();
+      filtered = filtered.filter((c) => c.name.toLowerCase().includes(q) || c.owner_email.toLowerCase().includes(q));
+    }
+    const start = opts.offset || 0;
+    const end = opts.limit ? start + opts.limit : undefined;
+    const sliced = filtered.slice(start, end);
+    return sliced.map((c) => ({ ...c, owner_email: maskEmail(c.owner_email), owner_phone: maskPhone(c.owner_phone) }));
   }
 
   viewCompanyDetails(company_id: string): Company | null {
@@ -102,6 +149,18 @@ export class SuperAdminService {
 
   getAuditLog() {
     return auditLog;
+  }
+
+  listCompanyJobs(company_id: string, limit = 20, offset = 0) {
+    // Placeholder jobs list for demo; replace with real jobs service when available
+    const samples = Array.from({ length: 10 }).map((_, idx) => ({
+      id: `${company_id}-job-${idx + 1}`,
+      title: `Job ${idx + 1}`,
+      status: idx % 3 === 0 ? "completed" : idx % 3 === 1 ? "in_progress" : "pending",
+      created_at: nowIso(),
+    }));
+    const items = samples.slice(offset, offset + limit);
+    return { items, total: samples.length };
   }
 }
 

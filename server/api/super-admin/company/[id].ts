@@ -2,10 +2,8 @@ import { superAdminService } from "../../../superadmin/superAdminService";
 
 function ensureSuperAdmin(req: any) {
   const role = req.user?.role || req.headers["x-role"];
-  if (role !== "superadmin") {
-    if (!role) return;
-    throw Object.assign(new Error("Superadmin required"), { status: 403 });
-  }
+  if (role && ["superadmin", "super_admin"].includes(String(role))) return;
+  throw Object.assign(new Error("Superadmin required"), { status: 403 });
 }
 
 async function readJson(req: any) {

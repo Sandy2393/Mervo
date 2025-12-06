@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { superAdminFetch } from '../../lib/session/companyContext';
 
 interface SuperAdminDashboard {
   summary: {
@@ -41,7 +42,7 @@ export default function BillingOverview() {
 
   const fetchDashboard = async () => {
     try {
-      const res = await fetch('/api/super-admin/billing/dashboard');
+      const res = await superAdminFetch('/api/super-admin/billing/dashboard');
       const data = await res.json();
       setDashboard(data);
     } catch (error) {
@@ -246,7 +247,7 @@ export default function BillingOverview() {
         <button
           onClick={async () => {
             if (confirm('Generate invoices for all companies for the previous month?')) {
-              await fetch('/api/super-admin/billing/process-monthly', { method: 'POST' });
+              await superAdminFetch('/api/super-admin/billing/process-monthly', { method: 'POST' });
               alert('Monthly billing processed');
               fetchDashboard();
             }
@@ -259,7 +260,7 @@ export default function BillingOverview() {
         <button
           onClick={async () => {
             if (confirm('Suspend all companies with invoices 7+ days overdue?')) {
-              const res = await fetch('/api/super-admin/billing/suspend-overdue', { method: 'POST' });
+              const res = await superAdminFetch('/api/super-admin/billing/suspend-overdue', { method: 'POST' });
               const data = await res.json();
               alert(`Suspended ${data.suspended} companies`);
               fetchDashboard();
@@ -272,7 +273,7 @@ export default function BillingOverview() {
         
         <button
           onClick={async () => {
-            const res = await fetch('/api/super-admin/billing/send-usage-alerts', { method: 'POST' });
+            const res = await superAdminFetch('/api/super-admin/billing/send-usage-alerts', { method: 'POST' });
             const data = await res.json();
             alert(`Sent ${data.alertsSent} usage alerts`);
           }}

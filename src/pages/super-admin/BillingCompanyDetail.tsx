@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { superAdminFetch } from '../../lib/session/companyContext';
 
 interface CompanyBillingDetail {
   dashboard: {
@@ -72,7 +73,7 @@ export default function BillingCompanyDetail() {
 
   const fetchCompanyDetail = async () => {
     try {
-      const res = await fetch(`/api/super-admin/billing/company/${companyId}`);
+      const res = await superAdminFetch(`/api/super-admin/billing/company/${companyId}`);
       const detail = await res.json();
       setData(detail);
     } catch (error) {
@@ -89,7 +90,7 @@ export default function BillingCompanyDetail() {
     if (!reason) return;
 
     try {
-      await fetch(`/api/super-admin/billing/company/${companyId}/suspend`, {
+      await superAdminFetch(`/api/super-admin/billing/company/${companyId}/suspend`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reason }),
@@ -105,7 +106,7 @@ export default function BillingCompanyDetail() {
     if (!confirm('Restore access for this company?')) return;
 
     try {
-      await fetch(`/api/super-admin/billing/company/${companyId}/unsuspend`, {
+      await superAdminFetch(`/api/super-admin/billing/company/${companyId}/unsuspend`, {
         method: 'POST',
       });
       alert('Company unsuspended');
@@ -117,7 +118,7 @@ export default function BillingCompanyDetail() {
 
   const handleApplyCoupon = async () => {
     try {
-      await fetch(`/api/super-admin/billing/company/${companyId}/apply-coupon`, {
+      await superAdminFetch(`/api/super-admin/billing/company/${companyId}/apply-coupon`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ couponCode }),
@@ -141,7 +142,7 @@ export default function BillingCompanyDetail() {
     if (!confirm(`Change plan to ${newTier}?`)) return;
 
     try {
-      await fetch(`/api/super-admin/billing/company/${companyId}/change-plan`, {
+      await superAdminFetch(`/api/super-admin/billing/company/${companyId}/change-plan`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newTier }),

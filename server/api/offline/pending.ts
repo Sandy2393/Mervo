@@ -1,5 +1,11 @@
 import { queueInspector } from "../../offline/queueInspector";
 
+function ensureSuperAdmin(req: any) {
+  const role = req.user?.role || req.headers["x-role"];
+  if (role && ["superadmin", "super_admin"].includes(String(role))) return;
+  throw Object.assign(new Error("Superadmin required"), { status: 403 });
+}
+
 async function readJson(req: any) {
   const raw = await new Promise<string>((resolve, reject) => {
     let data = "";
@@ -11,6 +17,12 @@ async function readJson(req: any) {
 }
 
 export default async function handler(req: any, res: any) {
+  try {
+    ensureSuperAdmin(req);
+  } catch (err: any) {
+    return res.status(err?.status || 403).json({ error: err?.message || "Forbidden" });
+  }
+
   if (req.method === "GET") {
     const company_id = req.query?.company_id;
     const pending = queueInspector.listPendingSyncs(company_id);

@@ -20,9 +20,14 @@ export default function AuditViewer() {
 
   async function load() {
     const qs = new URLSearchParams();
-    Object.entries(filters).forEach(([k, v]) => v && qs.append(k, v));
-    const resp = await authedFetch(`/api/audit/logs?${qs.toString()}`);
-    if (resp.ok) setRows(await resp.json());
+    if (filters.company_id) qs.append("company_id", filters.company_id);
+    if (filters.actor) qs.append("actor", filters.actor);
+    if (filters.action) qs.append("q", filters.action);
+    const resp = await authedFetch(`/api/super-admin/audit/search?${qs.toString()}`);
+    if (resp.ok) {
+      const data = await resp.json();
+      setRows(data.items || data || []);
+    }
   }
 
   function exportCsv() {

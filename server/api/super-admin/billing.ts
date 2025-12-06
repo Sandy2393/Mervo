@@ -16,7 +16,8 @@ const router = Router();
  * Middleware to check super-admin permissions
  */
 const requireSuperAdmin = (req: Request, res: Response, next: Function) => {
-  if (req.user?.role !== 'super_admin') {
+  const role = (req.user as any)?.role || req.headers['x-role'];
+  if (!role || !['super_admin', 'superadmin'].includes(String(role))) {
     return res.status(403).json({ error: 'Super admin access required' });
   }
   next();
