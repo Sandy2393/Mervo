@@ -28,6 +28,7 @@ import ContractorTodayDashboard from './pages/contractor/ContractorTodayDashboar
 import JobExecutionPage from './pages/contractor/JobExecutionPage';
 import MyEarnings from './pages/contractor/MyEarnings';
 import TimesheetsPage from './pages/contractor/TimesheetsPage';
+import PasswordResetPage from './pages/PasswordResetPage';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -82,6 +83,7 @@ function AppContent() {
       <Route path="/contractor/login" element={<ContractorLoginPage />} />
       <Route path="/select-company" element={<CompanySelectorPage />} />
       <Route path="/settings/account-linking" element={<AccountLinkingSettingsPage />} />
+      <Route path="/auth/reset-password" element={<PasswordResetPage />} />
 
       {/* Protected Routes */}
       <Route
