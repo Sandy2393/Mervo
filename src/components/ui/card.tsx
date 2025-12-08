@@ -2,27 +2,19 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-interface CardPropsExtended extends React.HTMLAttributes<HTMLDivElement> {
-  header?: React.ReactNode // Legacy prop for backward compatibility
-  footer?: React.ReactNode // Legacy prop for backward compatibility
-}
-
-const Card = React.forwardRef<HTMLDivElement, CardPropsExtended>(
-  ({ className, header, footer, children, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        "rounded-xl border bg-card text-card-foreground shadow",
-        className
-      )}
-      {...props}
-    >
-      {header && <div className="px-6 py-4 border-b">{header}</div>}
-      <div className={cn(header || footer ? "p-6" : "p-6")}>{children}</div>
-      {footer && <div className="px-6 py-4 border-t">{footer}</div>}
-    </div>
-  )
-)
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-xl border bg-card text-card-foreground shadow",
+      className
+    )}
+    {...props}
+  />
+))
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<
@@ -69,6 +61,9 @@ const CardContent = React.forwardRef<
 ))
 CardContent.displayName = "CardContent"
 
+// Backward compatibility alias (legacy imports use CardBody)
+const CardBody = CardContent
+
 const CardFooter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -81,7 +76,14 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-// Backward compatibility alias
-const CardBody = CardContent
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardBody
+}
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, CardBody }
+export default Card
