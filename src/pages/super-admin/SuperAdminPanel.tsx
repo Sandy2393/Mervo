@@ -4,7 +4,7 @@
  */
 
 
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { useEffect, useState } from 'react';
 import { superAdminFetch } from '../../lib/session/companyContext';
 

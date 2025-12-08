@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { jobInstancesService } from '../../services/jobInstancesService';
 import { exportsService } from '../../services/exportsService';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { JobInstance, Job } from '../../types';
 

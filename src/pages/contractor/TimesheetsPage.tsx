@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { timesheetService } from '../../services/timesheetService';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 
 export default function TimesheetsPage() {
   const { user } = useAuth();

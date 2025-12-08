@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { billingService } from '../../services/billingService';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { formatCurrency } from '../../lib/currency';
 import { Link } from 'react-router-dom';

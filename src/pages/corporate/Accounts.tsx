@@ -7,7 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 import { companyService } from '../../services/companyService';
 import { financeService } from '../../services/financeService';
 import { billingService } from '../../services/billingService';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { formatCurrency, centsToDecimal } from '../../lib/currency';
 import { Link } from 'react-router-dom';

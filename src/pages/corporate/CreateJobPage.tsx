@@ -6,10 +6,10 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Card, CardBody, CardFooter } from '../../components/ui/Card';
+import { Card, CardBody, CardFooter } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
-import { Select } from '../../components/ui/Select';
+import { Select } from '../../components/ui/select';
 import { jobsService } from '../../services/jobsService';
 
 export default function CreateJobPage() {

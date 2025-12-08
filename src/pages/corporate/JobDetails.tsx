@@ -5,12 +5,12 @@ import { jobInstancesService } from '../../services/jobInstancesService';
 import { jobsService } from '../../services/jobsService';
 import { usersService } from '../../services/usersService';
 import { auditService } from '../../services/auditService';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
-import { Modal } from '../../components/ui/Modal';
+import { Modal } from '../../components/ui/modal';
 import { Job, JobInstance, CompanyUser } from '../../types';
-import Toast from '../../components/ui/Toast';
+import Toast from '../../components/ui/toast';
 
 export default function JobDetails() {
   const { jobId } = useParams<{ jobId: string }>();

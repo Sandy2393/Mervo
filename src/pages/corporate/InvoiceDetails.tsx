@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { billingService } from '../../services/billingService';
 import { formatCurrency } from '../../lib/currency';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 
 export default function InvoiceDetails() {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 
 const SUPER_ADMIN_KEY = import.meta.env.VITE_SUPER_ADMIN_KEY || 'mervo_super-admin_key_2025';
 

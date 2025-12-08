@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { Button } from "../components/ui/button";
-import { Card } from "../components/ui/Card";
-import FormInput from "../components/ui/FormInput";
-import ThemeToggle from "../components/ui/ThemeToggle";
+import { Button } from '../components/ui/button';
+import { Card } from '../components/ui/card';
+import FormInput from '../components/ui/form-input'
+import ThemeToggle from '../components/ui/theme-toggle'
 import { initTheme } from "../styles/theme";
 
 export default function LoginPolished() {

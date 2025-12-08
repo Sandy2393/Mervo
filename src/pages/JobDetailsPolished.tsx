@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import Header from "../components/ui/Header";
-import { Card } from "../components/ui/Card";
-import { Button } from "../components/ui/button";
+import Header from '../components/ui/header';
+import { Card } from '../components/ui/card';
+import { Button } from '../components/ui/button';
 import { initTheme } from "../styles/theme";
 
 const gallery = ["/placeholder1.png", "/placeholder2.png"];

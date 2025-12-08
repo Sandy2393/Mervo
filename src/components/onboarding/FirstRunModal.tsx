@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, CardBody } from '../ui/Card';
+import { Card, CardBody } from '../ui/card';
 import { Button } from '../ui/button';
 
 /**

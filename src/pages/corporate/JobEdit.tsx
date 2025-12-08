@@ -3,10 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { jobsService } from '../../services/jobsService';
 import { auditService } from '../../services/auditService';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
-import Toast from '../../components/ui/Toast';
+import Toast from '../../components/ui/toast';
 
 export default function JobEdit() {
   const { jobId } = useParams<{ jobId: string }>();

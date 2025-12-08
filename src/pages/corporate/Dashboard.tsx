@@ -9,7 +9,7 @@ import { useAuth } from '../../context/AuthContext';
 import { jobInstancesService } from '../../services/jobInstancesService';
 import { auditService } from '../../services/auditService';
 import { financeService, type RevenueData, type PaymentData } from '../../services/financeService';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { formatCurrency } from '../../lib/currency';
 import type { AuditLog } from '../../types';
 

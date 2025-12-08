@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card, CardBody } from '../components/ui/Card';
+import { Card, CardBody } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 
 export default function AuthLandingPage() {

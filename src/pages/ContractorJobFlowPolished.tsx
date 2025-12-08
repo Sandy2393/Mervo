@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Button } from "../components/ui/button";
-import { Card } from "../components/ui/Card";
+import { Button } from '../components/ui/button';
+import { Card } from '../components/ui/card';
 import { initTheme } from "../styles/theme";
 
 const todaysJobs = [

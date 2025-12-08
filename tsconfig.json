@@ -14,7 +14,7 @@
     "jsx": "react-jsx",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

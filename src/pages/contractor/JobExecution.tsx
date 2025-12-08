@@ -14,7 +14,7 @@ import { reportService } from '../../services/reportService';
 import { geoService } from '../../services/geoService';
 import { compressFile } from '../../lib/photo';
 import { offlineJobsQueue } from '../../lib/offlineJobsQueue';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Timesheet, JobInstance, Job } from '../../types';

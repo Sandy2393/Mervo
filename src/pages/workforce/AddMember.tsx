@@ -9,9 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { companyUserService } from '../../services/companyUserService';
 import { usernameUtils } from '../../lib/validation/username';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Input } from '../../components/ui/input';
-import { Select } from '../../components/ui/Select';
+import { Select } from '../../components/ui/select';
 import { Button } from '../../components/ui/button';
 
 const ROLE_OPTIONS = [

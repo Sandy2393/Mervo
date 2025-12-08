@@ -4,10 +4,10 @@ import { useAuth } from '../../context/AuthContext';
 import { jobsService } from '../../services/jobsService';
 import ContractorSelector from '../../components/selectors/ContractorSelector';
 import { validateJobPayload } from '../../services/validationService';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../../components/ui/card';
 import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
-import Toast from '../../components/ui/Toast';
+import Toast from '../../components/ui/toast';
 
 export default function JobCreate() {
   const { user, activeCompanyId } = useAuth();

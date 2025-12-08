@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import UsernameField from '../../components/form/UsernameField';
 import PasswordField from '../../components/form/PasswordField';
 import { Button } from '../../components/ui/button';
-import { Card, CardBody } from '../../components/ui/Card';
+import { Card, CardBody } from '../components/ui/card';
 import { loginWithMasterId } from '../../services/auth/login';
 import { useAuth } from '../../context/AuthContext';
 import { ENV } from '../../config/env';

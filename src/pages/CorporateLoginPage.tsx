@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import UsernameField from '../components/form/UsernameField';
 import PasswordField from '../components/form/PasswordField';
 import { Button } from '../components/ui/button';
-import { Card, CardBody } from '../components/ui/Card';
+import { Card, CardBody } from '../components/ui/card';
 import { authService } from '../services/authService';
 
 export default function CorporateLoginPage() {
