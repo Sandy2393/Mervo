@@ -10,6 +10,8 @@ import { companyService } from '../services/companyService';
 import { setActiveCompany as persistActiveCompany, getActiveCompany } from '../services/auth/companySwitch';
 import { loginWithMasterId } from '../services/auth/login';
 
+const DEV_BYPASS_ENABLED = import.meta.env.DEV && import.meta.env.VITE_DEV_BYPASS === 'true';
+
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -124,6 +126,60 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const devBypassLogin = useCallback(async (role: 'contractor' | 'corporate') => {
+    if (!DEV_BYPASS_ENABLED) {
+      throw new Error('Dev bypass is disabled');
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const now = new Date().toISOString();
+      const roleName = role === 'corporate' ? 'admin' : 'contractor';
+      const companyId = role === 'corporate' ? 'dev-corp-co' : 'dev-field-co';
+      const userId = role === 'corporate' ? 'dev-corp-user' : 'dev-contractor-user';
+
+      const devUser: AuthUser = {
+        id: userId,
+        email: `${role}@mervo.dev`,
+        display_name: role === 'corporate' ? 'Dev Corporate' : 'Dev Contractor',
+        role: roleName,
+        created_at: now
+      };
+
+      const devCompany: Company = {
+        id: companyId,
+        name: role === 'corporate' ? 'DevCorp Demo' : 'DevField Demo',
+        company_tag: role === 'corporate' ? 'DEVCO' : 'DEVFIELD',
+        settings: {},
+        status: 'active',
+        created_at: now
+      };
+
+      const devCompanyUser: CompanyUser = {
+        id: `${companyId}-cu`,
+        company_id: companyId,
+        user_id: userId,
+        company_alias: devCompany.company_tag.toLowerCase(),
+        role: roleName,
+        role_level: role === 'corporate' ? 5 : 1,
+        permissions: {},
+        status: 'active',
+        created_at: now
+      };
+
+      setUser(devUser);
+      setCompanyUser(devCompanyUser);
+      setCompanies([devCompany]);
+      setActiveCompanyId(companyId);
+      setRolesForActiveCompany([roleName]);
+      persistActiveCompany(companyId);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   const switchCompany = useCallback((companyId: string) => {
     const company = companies.find(c => c.id === companyId);
     if (company) {
@@ -143,7 +199,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       })();
     }
-  }, [companies]);
+  }, [companies, user]);
 
   const value: AuthContextType = {
     user,
@@ -154,6 +210,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     loading,
     error,
     login,
+    devBypassLogin: DEV_BYPASS_ENABLED ? devBypassLogin : undefined,
     logout,
     switchCompany
   };

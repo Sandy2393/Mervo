@@ -9,11 +9,26 @@ import { authService } from '../services/authService';
 
 export default function ContractorLoginPage() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, devBypassLogin } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const devBypassEnabled = import.meta.env.DEV && import.meta.env.VITE_DEV_BYPASS === 'true';
+
+  const handleDevBypass = async () => {
+    if (!devBypassEnabled || !devBypassLogin) return;
+    try {
+      setLoading(true);
+      setError(null);
+      await devBypassLogin('contractor');
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Dev bypass failed');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -60,6 +75,17 @@ export default function ContractorLoginPage() {
             <PasswordField value={password} onChange={(e) => setPassword(e.target.value)} />
             {error && <div className="text-red-600 text-sm">{error}</div>}
             <Button type="submit" isLoading={loading} className="w-full">Sign In</Button>
+            {devBypassEnabled && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleDevBypass}
+                className="w-full"
+                disabled={loading}
+              >
+                Dev quick access
+              </Button>
+            )}
           </form>
         </CardBody>
       </Card>

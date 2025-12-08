@@ -166,6 +166,7 @@ export interface AuthContextType {
   loading: boolean;
   error: string | null;
   login: (master_alias: string, password: string) => Promise<void>;
+  devBypassLogin?: (role: 'contractor' | 'corporate') => Promise<void>;
   logout: () => Promise<void>;
   switchCompany: (companyId: string) => void;
 }

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
-import { Card, CardBody } from '../../components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/ui/card';
+import { Alert, AlertDescription } from '../../components/ui/alert';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
+import { Badge } from '../../components/ui/badge';
+import { ShieldAlert, ShieldCheck, Lock, Mail, KeyRound } from 'lucide-react';
 
 const SUPER_ADMIN_KEY = import.meta.env.VITE_SUPER_ADMIN_KEY || 'mervo_super-admin_key_2025';
 
@@ -17,29 +22,47 @@ export default function SuperAdminLogin() {
   const secretKey = searchParams.get('key');
   const hasValidKey = secretKey === SUPER_ADMIN_KEY;
 
-  // Debug logging (remove in production)
-  console.log('Expected key:', SUPER_ADMIN_KEY);
-  console.log('Provided key:', secretKey);
-  console.log('Valid?:', hasValidKey);
-
   if (!hasValidKey) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-        <Card className="w-full max-w-md">
-          <CardBody>
-            <div className="text-center">
-              <h1 className="text-2xl font-bold text-gray-900">Access Denied</h1>
-              <p className="text-gray-600 mt-2">Invalid or missing admin key</p>
-              <p className="text-red-600 mt-4 font-semibold">🔒 Unauthorized Access</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-orange-50 to-red-100 px-4">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8 animate-pulse">
+            <ShieldAlert className="h-20 w-20 text-red-500 mx-auto mb-4" />
+          </div>
+          
+          <Card className="shadow-2xl border-2 border-red-200">
+            <CardHeader className="text-center pb-3">
+              <Badge variant="destructive" className="mx-auto mb-3 text-sm px-4 py-1">
+                UNAUTHORIZED
+              </Badge>
+              <CardTitle className="text-2xl text-red-600">Access Denied</CardTitle>
+              <CardDescription className="text-base">
+                Invalid or missing security key
+              </CardDescription>
+            </CardHeader>
+            
+            <CardContent className="text-center space-y-4">
+              <Alert variant="destructive">
+                <ShieldAlert className="h-4 w-4" />
+                <AlertDescription>
+                  A valid authentication key is required to access this protected system area.
+                </AlertDescription>
+              </Alert>
+
               {import.meta.env.DEV && (
-                <div className="mt-4 text-xs text-left bg-gray-100 p-2 rounded">
-                  <p>Expected: {SUPER_ADMIN_KEY}</p>
-                  <p>Provided: {secretKey || '(none)'}</p>
+                <div className="mt-4 text-xs text-left bg-muted p-4 rounded-lg border">
+                  <p className="font-mono mb-1"><strong>Expected:</strong> {SUPER_ADMIN_KEY}</p>
+                  <p className="font-mono text-destructive"><strong>Provided:</strong> {secretKey || '(none)'}</p>
                 </div>
               )}
-            </div>
-          </CardBody>
-        </Card>
+
+              <div className="pt-4 text-xs text-muted-foreground">
+                <Lock className="h-4 w-4 inline-block mr-1" />
+                Protected System Administration Portal
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     );
   }
@@ -80,67 +103,102 @@ export default function SuperAdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <Card className="w-full max-w-md">
-        <CardBody>
-          <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">Super Admin Login</h1>
-            <p className="text-gray-600 mt-2">Protected system administration access</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 px-4 py-12">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mb-4 shadow-lg shadow-purple-500/50">
+            <ShieldCheck className="h-10 w-10 text-white" />
           </div>
+          <h1 className="text-4xl font-bold text-white mb-2">Super Admin</h1>
+          <Badge variant="secondary" className="text-xs">
+            <KeyRound className="h-3 w-3 mr-1" />
+            Security Key Verified
+          </Badge>
+        </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-                {error}
+        <Card className="shadow-2xl border-purple-500/50 bg-card/95 backdrop-blur">
+          <CardHeader className="text-center pb-4">
+            <CardTitle className="text-2xl">System Administration</CardTitle>
+            <CardDescription>Enter your credentials to continue</CardDescription>
+          </CardHeader>
+          
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-5">
+              {error && (
+                <Alert variant="destructive">
+                  <ShieldAlert className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 mb-1">
+                  <Mail className="h-4 w-4 text-muted-foreground" />
+                  <label htmlFor="email" className="text-sm font-medium">
+                    Email Address
+                  </label>
+                </div>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@mervo.com"
+                  className="h-11"
+                  required
+                />
               </div>
-            )}
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="admin@mervo.com"
-                required
-              />
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 mb-1">
+                  <Lock className="h-4 w-4 text-muted-foreground" />
+                  <label htmlFor="password" className="text-sm font-medium">
+                    Password
+                  </label>
+                </div>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  className="h-11"
+                  required
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full h-11 text-base bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg"
+              >
+                {loading ? (
+                  <>
+                    <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                    Authenticating...
+                  </>
+                ) : (
+                  <>
+                    <ShieldCheck className="h-4 w-4 mr-2" />
+                    Sign In Securely
+                  </>
+                )}
+              </Button>
+            </form>
+
+            <div className="mt-6 pt-6 border-t">
+              <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                <Lock className="h-3 w-3" />
+                <span>End-to-end encrypted authentication</span>
+              </div>
             </div>
+          </CardContent>
+        </Card>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter password"
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-            >
-              {loading ? 'Signing in...' : 'Sign In'}
-            </button>
-          </form>
-
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center">
-              🔒 Super admin credentials are required for system access
-            </p>
-          </div>
-        </CardBody>
-      </Card>
+        <p className="text-center text-xs text-white/60 mt-6">
+          Protected system area • Authorized personnel only
+        </p>
+      </div>
     </div>
   );
 }
