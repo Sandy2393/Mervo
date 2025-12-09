@@ -18,54 +18,7 @@ export default function SuperAdminLogin() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Check if secret key is provided in URL
-  const secretKey = searchParams.get('key');
-  const hasValidKey = secretKey === SUPER_ADMIN_KEY;
 
-  if (!hasValidKey) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-orange-50 to-red-100 px-4">
-        <div className="w-full max-w-md">
-          <div className="text-center mb-8 animate-pulse">
-            <ShieldAlert className="h-20 w-20 text-red-500 mx-auto mb-4" />
-          </div>
-          
-          <Card className="shadow-2xl border-2 border-red-200">
-            <CardHeader className="text-center pb-3">
-              <Badge variant="destructive" className="mx-auto mb-3 text-sm px-4 py-1">
-                UNAUTHORIZED
-              </Badge>
-              <CardTitle className="text-2xl text-red-600">Access Denied</CardTitle>
-              <CardDescription className="text-base">
-                Invalid or missing security key
-              </CardDescription>
-            </CardHeader>
-            
-            <CardContent className="text-center space-y-4">
-              <Alert variant="destructive">
-                <ShieldAlert className="h-4 w-4" />
-                <AlertDescription>
-                  A valid authentication key is required to access this protected system area.
-                </AlertDescription>
-              </Alert>
-
-              {import.meta.env.DEV && (
-                <div className="mt-4 text-xs text-left bg-muted p-4 rounded-lg border">
-                  <p className="font-mono mb-1"><strong>Expected:</strong> {SUPER_ADMIN_KEY}</p>
-                  <p className="font-mono text-destructive"><strong>Provided:</strong> {secretKey || '(none)'}</p>
-                </div>
-              )}
-
-              <div className="pt-4 text-xs text-muted-foreground">
-                <Lock className="h-4 w-4 inline-block mr-1" />
-                Protected System Administration Portal
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    );
-  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
